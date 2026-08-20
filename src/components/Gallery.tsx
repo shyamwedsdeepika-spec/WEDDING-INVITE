@@ -8,7 +8,7 @@ import Reveal from "./Reveal";
 
 const photos = [
   { src: "/images/gallery-1.jpg", alt: "Moments together", position: "50% 30%" },
-  { src: "/images/gallery-2.jpg", alt: "Exchanging rings", position: "50% 40%" },
+  { src: "/images/gallery-2.jpeg", alt: "Exchanging rings", position: "50% 40%" },
   { src: "/images/gallery-3.jpg", alt: "A quiet moment", position: "50% 40%" },
   { src: "/images/gallery-4.jpeg", alt: "Hand in hand", position: "50% 50%" },
 ];
