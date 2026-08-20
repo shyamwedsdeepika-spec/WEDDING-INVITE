@@ -64,11 +64,11 @@ export default function Hero() {
 
         <motion.h1
           variants={item}
-          className="font-display text-5xl italic text-ink sm:text-7xl md:text-8xl leading-[1.1] sm:leading-[0.95] tracking-tight"
+          className="flex flex-col items-center gap-0 font-display italic text-ink tracking-tight"
         >
-          {couple.partnerA}
-          <span className="mx-2 not-italic text-rose sm:mx-4 font-normal">&amp;</span>
-          {couple.partnerB}
+          <span className="text-4xl sm:text-5xl md:text-6xl leading-tight">{couple.partnerA}</span>
+          <span className="not-italic text-rose font-normal text-3xl sm:text-4xl leading-tight my-1">&amp;</span>
+          <span className="text-4xl sm:text-5xl md:text-6xl leading-tight">{couple.partnerB}</span>
         </motion.h1>
 
         {/* ── Honours & Quotes block ─────────────────────────────────────── */}
