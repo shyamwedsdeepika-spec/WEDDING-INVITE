@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Reveal from "./Reveal";
 
 // ─── Divider ─────────────────────────────────────────────────────────────────
@@ -212,6 +213,34 @@ export default function Story() {
           })}
         </div>
       </div>
+
+      {/* ── Couple portrait ────────────────────────────────────────────────── */}
+      <Reveal delay={0.3} className="mx-auto mt-20 max-w-sm sm:max-w-xs">
+        <div
+          className="relative overflow-hidden mx-auto shadow-[0_25px_60px_-20px_rgba(115,22,39,0.22),0_0_30px_-10px_rgba(229,190,101,0.25)]"
+          style={{
+            aspectRatio: "4 / 5",
+            borderRadius: "120px 120px 16px 16px",
+            border: "2px solid rgba(184, 134, 40, 0.55)",
+            padding: "8px",
+            background: "linear-gradient(145deg, #fffcf7 0%, #f7ecd7 100%)",
+          }}
+        >
+          <div
+            className="relative h-full w-full overflow-hidden"
+            style={{ borderRadius: "112px 112px 8px 8px" }}
+          >
+            <Image
+              src="/images/couple-story.jpg"
+              alt="Shyam & Deepika"
+              fill
+              sizes="(max-width: 640px) 90vw, 320px"
+              className="object-cover"
+              style={{ objectPosition: "50% 25%" }}
+            />
+          </div>
+        </div>
+      </Reveal>
     </section>
   );
 }
