@@ -13,6 +13,13 @@ import { couple } from "@/lib/events";
 export const metadata: Metadata = {
   title: `${couple.partnerA} & ${couple.partnerB} — Wedding Invitation`,
   description: `Join us in celebrating the wedding of ${couple.partnerA} and ${couple.partnerB}.`,
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+    ],
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
