@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+:root {
+  /* ── Saree-inspired Gold & Royal Maroon Palette ──
+     Deep bridal saree maroon, shimmering zari gold, warm antique champagne,
+     and pleasant golden silk glows */
+  --blush: #faf3e6;        /* base pleasant golden-cream silk background */
+  --blush-deep: #f2e3c6;   /* warm antique gold accent background */
+  --ink: #320f18;          /* deep royal maroon-espresso text */
+  --ink-soft: #6d424b;     /* warm rosewood secondary text */
+  --rose: #731627;         /* signature saree royal maroon */
+  --rose-deep: #4d0b18;    /* deep wine / velvet maroon */
+  --rose-light: #94243b;   /* luminous crimson accent */
+  --sage: #4d5b36;         /* auspicious foliage green */
+  --gold: #b88628;         /* rich zari gold */
+  --gold-light: #e5be65;   /* gleaming light gold */
+  --gold-deep: #8f6517;    /* antique temple gold */
+  --lavender: #d6983b;     /* warm golden aura glow */
+  --paper: #fffcf7;        /* card & surface ivory */
+
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Jost", sans-serif;
+}
+
+@theme inline {
+  --color-blush: var(--blush);
+  --color-blush-deep: var(--blush-deep);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-rose: var(--rose);
+  --color-rose-deep: var(--rose-deep);
+  --color-rose-light: var(--rose-light);
+  --color-sage: var(--sage);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-deep: var(--gold-deep);
+  --color-lavender: var(--lavender);
+  --color-paper: var(--paper);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+::selection {
+  background: var(--rose);
+  color: #fff4d4;
+}
+
+body {
+  background-color: var(--blush);
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(229, 190, 101, 0.28) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 50% at 100% 25%, rgba(115, 22, 39, 0.09) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 0% 50%, rgba(184, 134, 40, 0.14) 0%, transparent 55%),
+    radial-gradient(ellipse 80% 60% at 100% 75%, rgba(115, 22, 39, 0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 90% 70% at 50% 100%, rgba(229, 190, 101, 0.22) 0%, transparent 70%);
+  background-attachment: fixed;
+  color: var(--ink);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+/* Eyebrow / label style used across sections */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  font-weight: 600;
+}
+
+/* Visible keyboard focus (accessibility floor) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
