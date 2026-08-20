@@ -71,10 +71,66 @@ export default function Hero() {
           {couple.partnerB}
         </motion.h1>
 
+        {/* ── Honours & Quotes block ─────────────────────────────────────── */}
+        <motion.div
+          variants={item}
+          className="mt-8 mb-8 flex flex-col items-center px-4 text-center"
+        >
+          {/* Eyebrow */}
+          <span className="eyebrow">Request the Honour of Your Presence</span>
+
+          {/* Diamond divider */}
+          <div className="flex items-center justify-center gap-0 mt-4 mb-5" aria-hidden>
+            <span
+              style={{
+                display: "block",
+                height: "1px",
+                width: "60px",
+                background: "linear-gradient(to right, transparent, var(--gold))",
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                width: "7px",
+                height: "7px",
+                border: "1px solid var(--gold)",
+                transform: "rotate(45deg)",
+                margin: "0 9px",
+                flexShrink: 0,
+              }}
+            />
+            <span
+              style={{
+                display: "block",
+                height: "1px",
+                width: "60px",
+                background: "linear-gradient(to left, transparent, var(--gold))",
+              }}
+            />
+          </div>
+
+          {/* Quote 1 */}
+          <p
+            className="font-display italic text-ink text-xl sm:text-2xl leading-snug max-w-md"
+            style={{ color: "var(--rose)" }}
+          >
+            &ldquo;Whatever our souls are made of, his and mine are the same.&rdquo;
+          </p>
+
+          {/* Quote 2 */}
+          <p
+            className="font-display italic text-xl sm:text-2xl leading-snug max-w-md mt-3"
+            style={{ color: "var(--rose)" }}
+          >
+            &ldquo;To love and be loved is to feel the sun from both sides.&rdquo;
+          </p>
+        </motion.div>
+
         {/* Dual Event Showcase: Ceremony & Reception */}
         <motion.div
           variants={item}
-          className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full max-w-xl px-2"
+          className="mt-0 grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full max-w-xl px-2"
         >
           {/* Ceremony Card */}
           <motion.div
