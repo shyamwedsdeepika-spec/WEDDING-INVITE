@@ -55,7 +55,7 @@ export default function AddToCalendar({ item }: { item: WeddingEvent }) {
   const yahooUrl = createYahooCalendarUrl(item);
 
   return (
-    <div className="relative inline-block text-left" ref={menuRef}>
+    <div className={`relative inline-block text-left ${open ? "z-50" : "z-10"}`} ref={menuRef}>
       <motion.button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
@@ -69,7 +69,7 @@ export default function AddToCalendar({ item }: { item: WeddingEvent }) {
         <span>Add to Calendar</span>
         <ChevronDown
           className={`h-3 w-3 text-gold-deep transition-transform duration-200 ${
-            open ? "rotate-180" : ""
+            open ? "-rotate-180" : ""
           }`}
         />
       </motion.button>
@@ -77,11 +77,11 @@ export default function AddToCalendar({ item }: { item: WeddingEvent }) {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 6, scale: 0.96 }}
+            initial={{ opacity: 0, y: 8, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 4, scale: 0.96 }}
+            exit={{ opacity: 0, y: 6, scale: 0.96 }}
             transition={{ duration: 0.16, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute right-0 top-full mt-2 z-50 w-60 origin-top-right rounded-2xl border border-gold/40 bg-[#FFFBF4] p-1.5 shadow-[0_16px_36px_-10px_rgba(115,22,39,0.28)] ring-1 ring-gold/20 backdrop-blur-md"
+            className="absolute right-0 bottom-full mb-2 z-50 w-60 origin-bottom-right rounded-2xl border border-gold/40 bg-[#FFFBF4] p-1.5 shadow-[0_16px_36px_-10px_rgba(115,22,39,0.28)] ring-1 ring-gold/20 backdrop-blur-md"
           >
             <div className="px-3 py-1.5 text-[0.65rem] font-semibold uppercase tracking-wider text-gold-deep border-b border-gold/15 flex items-center justify-between">
               <span>Save Event</span>
