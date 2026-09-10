@@ -154,7 +154,7 @@ export default function Story() {
             style={{ borderRadius: "112px 112px 8px 8px" }}
           >
             <Image
-              src="/images/couple-story.jpg"
+              src="/images/couple-story.jpeg"
               alt="Shyam & Deepika"
               fill
               sizes="(max-width: 640px) 90vw, 320px"
