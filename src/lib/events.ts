@@ -138,6 +138,34 @@ export function createGoogleCalendarUrl(event: WeddingEvent): string {
   )}&location=${encodeURIComponent(location)}`;
 }
 
+// One-click Outlook Web Calendar URL
+export function createOutlookCalendarUrl(event: WeddingEvent): string {
+  const title = `${event.title} - ${couple.partnerA} and ${couple.partnerB}`;
+  const details = `${event.description}\n\nWedding of ${couple.partnerA} and ${couple.partnerB}\nHashtag: ${couple.hashtag}`;
+  const location = `${event.venueName}, ${event.address}`;
+
+  return `https://outlook.live.com/calendar/0/action/compose?rru=addevent&subject=${encodeURIComponent(
+    title
+  )}&startdt=${encodeURIComponent(event.startISO)}&enddt=${encodeURIComponent(
+    event.endISO
+  )}&body=${encodeURIComponent(details)}&location=${encodeURIComponent(location)}`;
+}
+
+// One-click Yahoo Calendar URL
+export function createYahooCalendarUrl(event: WeddingEvent): string {
+  const startUtc = formatUtcForCalendar(event.startISO);
+  const endUtc = formatUtcForCalendar(event.endISO);
+  const title = `${event.title} - ${couple.partnerA} and ${couple.partnerB}`;
+  const details = `${event.description}\n\nWedding of ${couple.partnerA} and ${couple.partnerB}\nHashtag: ${couple.hashtag}`;
+  const location = `${event.venueName}, ${event.address}`;
+
+  return `https://calendar.yahoo.com/?v=60&view=d&type=20&title=${encodeURIComponent(
+    title
+  )}&st=${startUtc}&et=${endUtc}&desc=${encodeURIComponent(
+    details
+  )}&in_loc=${encodeURIComponent(location)}`;
+}
+
 // RFC 5545 .ics Calendar Content
 export function createIcsCalendarContent(event: WeddingEvent): string {
   const startUtc = formatUtcForCalendar(event.startISO);
@@ -174,19 +202,19 @@ export function createIcsCalendarContent(event: WeddingEvent): string {
   ].join("\r\n");
 }
 
-// Client-side download trigger for Apple / Outlook — uses data URI for mobile compatibility
+// Client-side download trigger for Apple / Outlook (.ics)
 export function downloadIcsFile(event: WeddingEvent) {
   const ics = createIcsCalendarContent(event);
-  // Use data URI approach which works reliably on iOS Safari and Android Chrome
-  const dataUri = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
-  link.href = dataUri;
+  link.href = url;
   link.setAttribute("download", `${event.id}-wedding-invite.ics`);
   link.style.display = "none";
   document.body.appendChild(link);
   link.click();
-  // Small delay before cleanup for mobile browsers
   setTimeout(() => {
     document.body.removeChild(link);
-  }, 100);
+    URL.revokeObjectURL(url);
+  }, 1000);
 }

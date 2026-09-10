@@ -31,7 +31,7 @@ export default function Schedule() {
               <motion.div
                 whileHover={{ y: -4 }}
                 transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                className="group relative flex h-full flex-col justify-between overflow-hidden rounded-3xl border border-gold/40 bg-paper/95 p-6 sm:p-8 shadow-[0_15px_35px_-15px_rgba(115,22,39,0.18)] backdrop-blur-sm transition-all duration-300 hover:border-gold hover:shadow-[0_20px_45px_-12px_rgba(115,22,39,0.25)]"
+                className="group relative flex h-full flex-col justify-between rounded-3xl border border-gold/40 bg-paper/95 p-6 sm:p-8 shadow-[0_15px_35px_-15px_rgba(115,22,39,0.18)] backdrop-blur-sm transition-all duration-300 hover:border-gold hover:shadow-[0_20px_45px_-12px_rgba(115,22,39,0.25)]"
               >
                 <div>
                   {/* Top Bar: Badge & Event Number */}
