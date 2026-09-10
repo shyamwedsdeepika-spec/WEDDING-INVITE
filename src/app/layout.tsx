@@ -39,9 +39,10 @@ export const metadata: Metadata = {
     siteName: `${couple.partnerA} & ${couple.partnerB} Wedding`,
     images: [
       {
-        url: "/images/couple-hero.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
+        type: "image/jpeg",
         alt: `${couple.partnerA} & ${couple.partnerB} — Wedding Invitation`,
       },
     ],
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteTitle,
     description: siteDescription,
-    images: ["/images/couple-hero.png"],
+    images: ["/og-image.jpg"],
   },
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png" }],
