@@ -1,15 +1,17 @@
 // ─────────────────────────────────────────────────────────────
-// EDIT EVERYTHING HERE. This is the only file you need to touch
-// to change names, dates, venues, schedule, and copy.
+// SINGLE SOURCE OF TRUTH FOR ALL WEDDING DATA
+// Couple names, dates, story, events, venues, and coordinates.
 // ─────────────────────────────────────────────────────────────
 
 export const couple = {
   partnerA: "Shyam Sundar Ravi",
   partnerB: "Deepika NJ",
+  shortA: "Shyam",
+  shortB: "Deepika",
   hashtag: "#ShyamWedsDeepika",
 };
 
-// ISO date string, used for the countdown. Keep the timezone offset accurate.
+// ISO date string, used for the countdown. (Thursday, 17 September 2026, 07:00 AM IST)
 export const weddingDateISO = "2026-09-17T07:00:00+05:30";
 
 export const coordinators = [
@@ -18,108 +20,164 @@ export const coordinators = [
 ];
 
 export const story = {
-  eyebrow: "Our Story",
-  heading: "Two families, one garden",
-  paragraphs: [
-    "We met on a rainy August evening, arguing over the last filter coffee at a college canteen. Six years, one dog, and countless road trips later, we're ready to begin the next chapter — and we'd love for you to be there when we do.",
-    "With the blessings of our families, we invite you to celebrate our wedding with two days of rituals, food, and joy.",
+  eyebrow: "A Journey of Two Hearts",
+  heading: "Our Story",
+  milestones: [
+    {
+      year: "2022",
+      tag: "2022 — Chennai",
+      title: "Close Friends",
+      body: "Our story began as friendship in Chennai — two years of shared moments, easy conversations, and a bond that quietly grew stronger.",
+    },
+    {
+      year: "2024",
+      tag: "2024 — Chennai",
+      title: "Friendship Turned To Love",
+      body: "Somewhere along the way, friendship became something more. The next two years were spent falling in love, one day at a time.",
+    },
+    {
+      year: "2026",
+      tag: "2026 — Chennai",
+      title: "Forever Begins",
+      body: "Four years after we first met, we're ready to say 'I do' — surrounded by the family and friends who've walked the journey with us.",
+    },
   ],
 };
 
-export type ScheduleItem = {
+export type WeddingEvent = {
+  id: string;
+  badge: string;
+  title: string;
   date: string;
+  shortDate: string;
   day: string;
   time: string;
-  title: string;
-  description: string;
   venueName: string;
-};
-
-export const mainEvents = [
-  {
-    id: "ceremony",
-    type: "Ceremony",
-    date: "17 September 2026",
-    shortDate: "17 Sep 2026",
-    day: "Thursday",
-    time: "7:00 AM – 10:00 AM",
-    title: "Wedding Ceremony",
-    venue: "Kumaran Kundram Temple",
-    venueDetail: "Chromepet, Chennai",
-    badge: "Muhurtham",
-  },
-  {
-    id: "reception",
-    type: "Reception",
-    date: "20 September 2026",
-    shortDate: "20 Sep 2026",
-    day: "Sunday",
-    time: "6:00 PM – 10:00 PM",
-    title: "Wedding Reception",
-    venue: "Annal Ambedkar Thirumana Maaligai",
-    venueDetail: "Jamalia, Chennai",
-    badge: "Dinner & Celebration",
-  },
-];
-
-export const schedule: ScheduleItem[] = [
-  {
-    date: "Thursday, 17 September 2026",
-    day: "Thursday",
-    time: "7:00 AM – 10:00 AM",
-    title: "Wedding Ceremony",
-    description: "Traditional rituals and the sacred muhurtham followed by breakfast.",
-    venueName: "Kumaran Kundram Temple, Chromepet",
-  },
-  {
-    date: "Sunday, 20 September 2026",
-    day: "Sunday",
-    time: "6:00 PM – 10:00 PM",
-    title: "Wedding Reception",
-    description: "An evening of celebration, joyous music, and a grand dinner with family & friends.",
-    venueName: "Annal Ambedkar Thirumana Maaligai, Jamalia",
-  },
-];
-
-export type Venue = {
-  id: string;
-  label: string;
-  name: string;
+  venueDetail: string;
   address: string;
   lat: number;
   lng: number;
-  time: string;
+  startISO: string;
+  endISO: string;
+  description: string;
 };
 
-export const venues: Venue[] = [
+export type ScheduleItem = WeddingEvent;
+
+// Single Source of Truth for Wedding Events (Ceremony & Reception)
+export const weddingEvents: WeddingEvent[] = [
   {
     id: "ceremony",
-    label: "Ceremony",
-    name: "Kumaran Kundram Temple",
+    badge: "Muhurtham",
+    title: "Wedding Ceremony",
+    date: "Thursday, 17 September 2026",
+    shortDate: "17 Sep 2026",
+    day: "Thursday",
+    time: "7:00 AM – 10:00 AM",
+    venueName: "Kumaran Kundram Temple",
+    venueDetail: "Chromepet, Chennai",
     address: "Hastinapuram Main Rd, Nehru Nagar, Chromepet, Tambaram, Chennai, Tamil Nadu 600044",
     lat: 12.9438238,
     lng: 80.1430373,
-    time: "September 17, 7:00 AM – 10:00 AM",
+    startISO: "2026-09-17T07:00:00+05:30",
+    endISO: "2026-09-17T10:00:00+05:30",
+    description: "Traditional rituals and the sacred muhurtham followed by breakfast.",
   },
   {
     id: "reception",
-    label: "Reception",
-    name: "Annal Ambedkar Thirumana Maaligai",
+    badge: "Dinner & Celebration",
+    title: "Wedding Reception",
+    date: "Sunday, 20 September 2026",
+    shortDate: "20 Sep 2026",
+    day: "Sunday",
+    time: "6:00 PM – 10:00 PM",
+    venueName: "Annal Ambedkar Thirumana Maaligai",
+    venueDetail: "Jamalia, Chennai",
     address: "6, CYS Rd, Samathamman Colony, Jamalia, Greater Chennai, Tamil Nadu 600012",
     lat: 13.1072669,
     lng: 80.2456075,
-    time: "September 20, 6:00 PM – 10:00 PM",
+    startISO: "2026-09-20T18:00:00+05:30",
+    endISO: "2026-09-20T22:00:00+05:30",
+    description: "An evening of celebration, joyous music, and a grand dinner with family & friends.",
   },
 ];
 
-// Builds a universal Google Maps link: opens the native app on mobile,
-// falls back to Google Maps web on desktop. No API key required.
-export function mapsDirectionsUrl(venue: Venue) {
-  return `https://www.google.com/maps/search/?api=1&query=${venue.lat},${venue.lng}`;
+// Alias for backwards compatibility if needed
+export const schedule = weddingEvents;
+export const mainEvents = weddingEvents;
+
+// Maps helpers: Universal Google Maps link (opens native app on mobile / web on desktop)
+export function eventDirectionsUrl(event: WeddingEvent): string {
+  return `https://www.google.com/maps/search/?api=1&query=${event.lat},${event.lng}`;
 }
 
-// No-key embeddable map preview (Google Maps "output=embed" trick).
-export function mapsEmbedUrl(venue: Venue) {
-  const q = encodeURIComponent(`${venue.name}, ${venue.address}`);
+// Maps embed preview (no-API key)
+export function eventEmbedMapUrl(event: WeddingEvent): string {
+  const q = encodeURIComponent(`${event.venueName}, ${event.address}`);
   return `https://maps.google.com/maps?q=${q}&z=15&output=embed`;
+}
+
+// UTC helper for iCal / Google Calendar (YYYYMMDDTHHmmssZ)
+export function formatUtcForCalendar(isoString: string): string {
+  const d = new Date(isoString);
+  return d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+}
+
+// One-click Google Calendar URL
+export function createGoogleCalendarUrl(event: WeddingEvent): string {
+  const startUtc = formatUtcForCalendar(event.startISO);
+  const endUtc = formatUtcForCalendar(event.endISO);
+  const title = `${event.title} — ${couple.partnerA} & ${couple.partnerB}`;
+  const details = `${event.description}\n\nWedding of ${couple.partnerA} & ${couple.partnerB}\nHashtag: ${couple.hashtag}`;
+  const location = `${event.venueName}, ${event.address}`;
+
+  return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
+    title
+  )}&dates=${startUtc}/${endUtc}&details=${encodeURIComponent(
+    details
+  )}&location=${encodeURIComponent(location)}`;
+}
+
+// RFC 5545 .ics Calendar Content
+export function createIcsCalendarContent(event: WeddingEvent): string {
+  const startUtc = formatUtcForCalendar(event.startISO);
+  const endUtc = formatUtcForCalendar(event.endISO);
+  const nowUtc = formatUtcForCalendar(new Date().toISOString());
+  const title = `${event.title} — ${couple.partnerA} & ${couple.partnerB}`;
+  const details = `${event.description}\\n\\nWedding of ${couple.partnerA} & ${couple.partnerB}\\nHashtag: ${couple.hashtag}`;
+  const location = `${event.venueName}, ${event.address}`;
+
+  return [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Shyam and Deepika//Wedding Invitation//EN",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "BEGIN:VEVENT",
+    `UID:${event.id}-2026@shyamwedsdeepika`,
+    `DTSTAMP:${nowUtc}`,
+    `DTSTART:${startUtc}`,
+    `DTEND:${endUtc}`,
+    `SUMMARY:${title}`,
+    `DESCRIPTION:${details}`,
+    `LOCATION:${location}`,
+    "STATUS:CONFIRMED",
+    "SEQUENCE:0",
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+}
+
+// Client-side download trigger for Apple / Outlook
+export function downloadIcsFile(event: WeddingEvent) {
+  const ics = createIcsCalendarContent(event);
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url;
+  link.setAttribute("download", `${event.id}-wedding-invite.ics`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  URL.revokeObjectURL(url);
 }

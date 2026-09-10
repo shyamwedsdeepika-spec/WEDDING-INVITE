@@ -2,12 +2,11 @@ import Vine from "@/components/Vine";
 import Nav from "@/components/Nav";
 import ScrollProgress from "@/components/ScrollProgress";
 import Preloader from "@/components/Preloader";
+import Countdown from "@/components/Countdown";
 import Hero from "@/components/Hero";
 import Story from "@/components/Story";
-import Gallery from "@/components/Gallery";
 import Schedule from "@/components/Schedule";
-import Locations from "@/components/Locations";
-import Countdown from "@/components/Countdown";
+import Gallery from "@/components/Gallery";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -17,12 +16,11 @@ export default function Home() {
       <ScrollProgress />
       <Nav />
       <Vine />
+      <Countdown />
       <Hero />
       <Story />
-      <Gallery />
       <Schedule />
-      <Locations />
-      <Countdown />
+      <Gallery />
       <Footer />
     </main>
   );

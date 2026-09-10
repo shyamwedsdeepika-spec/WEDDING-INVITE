@@ -5,10 +5,11 @@ import { motion } from "framer-motion";
 import { couple } from "@/lib/events";
 
 const links = [
+  { href: "#countdown", label: "Countdown" },
+  { href: "#couple", label: "Couple" },
   { href: "#story", label: "Story" },
+  { href: "#events", label: "Events" },
   { href: "#gallery", label: "Gallery" },
-  { href: "#schedule", label: "Schedule" },
-  { href: "#venues", label: "Venues" },
 ];
 
 export default function Nav() {
@@ -35,22 +36,24 @@ export default function Nav() {
       className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-4"
     >
       <div
-        className={`flex items-center gap-0.5 rounded-full border border-gold/40 px-2 py-1.5 backdrop-blur-md transition-all duration-500 sm:gap-1 ${
-          scrolled ? "bg-paper/95 shadow-[0_10px_30px_-12px_rgba(115,22,39,0.25)] border-gold/60" : "bg-paper/75 shadow-sm"
+        className={`flex items-center gap-0.5 rounded-full border border-gold/40 px-2.5 py-1.5 backdrop-blur-md transition-all duration-500 sm:gap-1.5 ${
+          scrolled
+            ? "bg-paper/95 shadow-[0_10px_30px_-12px_rgba(115,22,39,0.25)] border-gold/60"
+            : "bg-paper/80 shadow-sm"
         }`}
       >
         <a
-          href="#top"
+          href="#countdown"
           className="hidden shrink-0 px-3 font-display text-base italic font-semibold text-rose sm:block"
           aria-label="Back to top"
         >
-          {couple.partnerA[0]}&amp;{couple.partnerB[0]}
+          {couple.shortA[0]}&amp;{couple.shortB[0]}
         </a>
         {links.map((l) => (
           <a
             key={l.href}
             href={l.href}
-            className="shrink-0 rounded-full px-2.5 py-1.5 font-body text-[0.62rem] tracking-[0.12em] font-medium text-ink-soft uppercase transition-colors hover:bg-rose/10 hover:text-rose sm:px-4 sm:text-[0.7rem]"
+            className="shrink-0 rounded-full px-2.5 py-1.5 font-body text-[0.62rem] tracking-[0.14em] font-semibold text-ink-soft uppercase transition-colors hover:bg-rose/10 hover:text-rose sm:px-3.5 sm:text-[0.68rem]"
           >
             {l.label}
           </a>
