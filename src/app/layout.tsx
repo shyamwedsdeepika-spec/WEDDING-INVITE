@@ -12,7 +12,7 @@ import { couple } from "@/lib/events";
 
 const siteTitle = `${couple.partnerA} & ${couple.partnerB} — Wedding Invitation`;
 const siteDescription = `Together with our families, we invite you to celebrate the wedding of ${couple.partnerA} and ${couple.partnerB} on September 17 & 20, 2026 in Chennai. ${couple.hashtag}`;
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://shyamwedsdeepika.vercel.app";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://wedding-invite-ivory-beta.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

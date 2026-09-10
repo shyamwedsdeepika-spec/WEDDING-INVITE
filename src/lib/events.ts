@@ -127,8 +127,8 @@ export function formatUtcForCalendar(isoString: string): string {
 export function createGoogleCalendarUrl(event: WeddingEvent): string {
   const startUtc = formatUtcForCalendar(event.startISO);
   const endUtc = formatUtcForCalendar(event.endISO);
-  const title = `${event.title} — ${couple.partnerA} & ${couple.partnerB}`;
-  const details = `${event.description}\n\nWedding of ${couple.partnerA} & ${couple.partnerB}\nHashtag: ${couple.hashtag}`;
+  const title = `${event.title} - ${couple.partnerA} and ${couple.partnerB}`;
+  const details = `${event.description}\n\nWedding of ${couple.partnerA} and ${couple.partnerB}\nHashtag: ${couple.hashtag}`;
   const location = `${event.venueName}, ${event.address}`;
 
   return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
@@ -143,8 +143,9 @@ export function createIcsCalendarContent(event: WeddingEvent): string {
   const startUtc = formatUtcForCalendar(event.startISO);
   const endUtc = formatUtcForCalendar(event.endISO);
   const nowUtc = formatUtcForCalendar(new Date().toISOString());
-  const title = `${event.title} — ${couple.partnerA} & ${couple.partnerB}`;
-  const details = `${event.description}\\n\\nWedding of ${couple.partnerA} & ${couple.partnerB}\\nHashtag: ${couple.hashtag}`;
+  const title = `${event.title} - ${couple.partnerA} and ${couple.partnerB}`;
+  // In iCal, newlines within a field are escaped as literal backslash-n
+  const details = `${event.description}\\nWedding of ${couple.partnerA} and ${couple.partnerB}\\nHashtag: ${couple.hashtag}`;
   const location = `${event.venueName}, ${event.address}`;
 
   return [
@@ -163,21 +164,29 @@ export function createIcsCalendarContent(event: WeddingEvent): string {
     `LOCATION:${location}`,
     "STATUS:CONFIRMED",
     "SEQUENCE:0",
+    "BEGIN:VALARM",
+    "TRIGGER:-PT30M",
+    "ACTION:DISPLAY",
+    `DESCRIPTION:Reminder: ${title}`,
+    "END:VALARM",
     "END:VEVENT",
     "END:VCALENDAR",
   ].join("\r\n");
 }
 
-// Client-side download trigger for Apple / Outlook
+// Client-side download trigger for Apple / Outlook — uses data URI for mobile compatibility
 export function downloadIcsFile(event: WeddingEvent) {
   const ics = createIcsCalendarContent(event);
-  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
+  // Use data URI approach which works reliably on iOS Safari and Android Chrome
+  const dataUri = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
   const link = document.createElement("a");
-  link.href = url;
+  link.href = dataUri;
   link.setAttribute("download", `${event.id}-wedding-invite.ics`);
+  link.style.display = "none";
   document.body.appendChild(link);
   link.click();
-  document.body.removeChild(link);
-  URL.revokeObjectURL(url);
+  // Small delay before cleanup for mobile browsers
+  setTimeout(() => {
+    document.body.removeChild(link);
+  }, 100);
 }
